@@ -1,0 +1,70 @@
+#-----------------------------------------------------------
+# THUC HIEN NHAP DAY SO N PHAN TU TU BAN PHIM
+# IN RA MAN HINH DAY VUA NHAP
+#-----------------------------------------------------------
+
+#commit lan 1
+clear
+echo "Nhap n: "
+read n
+
+sum=0
+i=0
+
+if [[ $n -gt 0 ]]
+then
+
+	for (( i = 0; i < $n ; i++ ))
+	do
+		echo -n "Nhap so thu $(($i+1)) "
+		read number
+		eval arr[$i]=$number
+	
+		#tinh tong
+		sum=$(( $sum+$number ))
+
+
+	done
+else
+	clear
+	echo "N>0"
+
+	exit 1
+fi
+
+echo
+echo "IN RA DAY VUA NHAP "
+i=0
+for (( i = 0; i < $n ; i++ ))
+	do
+	echo -n "${arr[$i]} 	"
+done
+echo
+
+echo "TONG LA $sum"
+echo
+echo
+#-----------------------------------------------------------
+#commit lan 2
+
+for (( i = 0; i < $(($n-1)) ; i++ ))
+do
+   for (( j = $i; j < $n; j++ ))
+   do
+
+      if [[ ${arr[$i]} -gt ${arr[$j]} ]]
+      then
+
+       t=${arr[$i]}
+       arr[$i]=${arr[$j]}
+       arr[$j]=$t
+      fi
+   done
+done
+
+echo "Day sap xep tang dan:"
+for (( i = 0; i < $n ; i++ ))
+do
+echo -n "${arr[$i]} 	"
+done
+echo
